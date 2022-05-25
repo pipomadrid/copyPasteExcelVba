@@ -1,4 +1,4 @@
-Attribute VB_Name = "Mod_MasterToCatalogue"
+Attribute VB_Name = "copyPasteExcelVba"
 Sub ImportarDatosMasterData()
 
 On Error GoTo error
