@@ -3,7 +3,7 @@ Sub ImportarDatosMasterData()
 
 On Error GoTo error
 
-'Declaración variables libro origen
+'DeclaraciÃ³n variables libro origen
 Dim wbLibroOrigen As Workbook
 Dim wsHojaOrigenCategory As Worksheet
 Dim wsHojaOrigenFamily As Worksheet
@@ -42,8 +42,6 @@ Set wsHojaDestinoLinkArtSup = wbLibroDestino.Worksheets("Link art-sup")
 Set wsHojaDestinoDataMaster = wbLibroDestino.Worksheets("DATA_MASTER")
 
 
-
-
 'Comprobamos que el archivo contiene una hoja llamada categoria e items para asegurarnos que es Master Data
 If BuscarHoja("CATEGORY", wbLibroOrigen) And BuscarHoja("ITEMS", wbLibroOrigen) Then
     
@@ -63,8 +61,6 @@ Else
 
 End If
 
-
-
 'Obtenemos la ultima fila con datos de cada hoja de la master data
 uFilaCategory = wsHojaOrigenCategory.Range("A" & Rows.Count).End(xlUp).Row
 uFilaFamily = wsHojaOrigenFamily.Range("A" & Rows.Count).End(xlUp).Row
@@ -76,11 +72,8 @@ uFilaDataMasterC = wsHojaOrigenDataMaster.Range("C" & Rows.Count).End(xlUp).Row
 uFilaDataMasterF = wsHojaOrigenDataMaster.Range("F" & Rows.Count).End(xlUp).Row
 
 
-
-
 'Copiamos los datos de la hojas del master data y los pegamos en las hojas del libro catalogue
 
- 
 Call copiarPegarRango(wsHojaDestinoCategory, wsHojaOrigenCategory.Range("A2:B" & uFilaCategory), wsHojaDestinoCategory.Range("A2"))
 
 Call copiarPegarRango(wsHojaDestinoFamily, wsHojaOrigenFamily.Range("A2:C" & uFilaFamily), wsHojaDestinoFamily.Range("A2"))
@@ -108,13 +101,12 @@ Call copiarPegarRango(wsHojaDestinoDataMaster, wsHojaOrigenDataMaster.Range("C2:
 Call copiarPegarRango(wsHojaDestinoDataMaster, wsHojaOrigenDataMaster.Range("F2:F" & uFilaDataMasterF), wsHojaDestinoDataMaster.Range("I2"))
 
 
-
 'Posicionamos el foco en la primera hoja
 wsHojaDestinoCategory.Activate
 
 error:
 If wbLibroOrigen Is Nothing Then
-    MsgBox "no ha seleccionado ningún archivo", vbInformation
+    MsgBox "no ha seleccionado ningÃºn archivo", vbInformation
 Else
     Workbooks(wbLibroOrigen.Name).Close Savechanges:=False
 End If
@@ -122,6 +114,8 @@ End If
 
 End Sub
 
+    
+    'FUNCION NUEVA
 Function IngresarRuta() As String
 
 'Ingresar la ruta de la Master Data
@@ -142,6 +136,7 @@ End With
 End Function
 
 
+    'FUNCION NUEVA
 Function BuscarHoja(nombreHoja As String, libro As Workbook) As Boolean
 
 'Funcion para comprobar que existan las hojas de la Master Data
@@ -157,6 +152,8 @@ Next
 BuscarHoja = IsExist
 End Function
 
+
+    'FUNCION NUEVA
 Function abrirArchivo() As String
 
     Dim fd As Office.FileDialog
@@ -180,6 +177,8 @@ Function abrirArchivo() As String
     End With
 End Function
 
+
+    'FUNCION NUEVA
 Sub copiarPegarRango(hojaDestino As Worksheet, rangoOrigen As Range, rangoDestino As Range)
 
 'funcion para copiar y pegar los datos y deselccionar los rangos de celdas pegadas
@@ -195,9 +194,10 @@ End Sub
 
 
 
+    'FUNCION NUEVA
 Sub ReemplazarTipoArt(hojaOrigen As Worksheet, hojaDestino As Worksheet)
 
-'funcion para coger los datos de los tipos de artículo,traducirlos si es necesario  y pegar en destino
+'funcion para coger los datos de los tipos de artÃ­culo,traducirlos si es necesario  y pegar en destino
 
 Dim miMatriz As Variant
 
